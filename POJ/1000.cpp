@@ -19,7 +19,7 @@ Sample Output
 Hint
 
 Q: Where are the input and the output? 
-
+u
 A: Your program shall always read input from stdin (Standard Input) and write output to stdout (Standard Output). For example, you can use 'scanf' in C or 'cin' in C++ to read from stdin, and use 'printf' in C or 'cout' in C++ to write to stdout. 
 
 You shall not output any extra data to standard output other than that required by the problem, otherwise you will get a "Wrong Answer". 
