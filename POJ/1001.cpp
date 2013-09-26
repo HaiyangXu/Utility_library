@@ -61,7 +61,7 @@ while(scanf("%s%d",s,&n)==2) //to  see if the scanf read in as many items as you
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#define debugoff
+#define debugd
 using namespace std;
 
 string pow(string s, int index);
@@ -75,7 +75,7 @@ int main()
     while(cin>>s>>n)
     {
         string result=pow(s,n);
-        cout<<trimtoDisplay(result)<<endl;
+        cout<<result<<endl;
 
     }
     return 0;
@@ -170,7 +170,7 @@ string mul(string s1,string s2)
 	}
 	
 	if(pos!=0)
-	re.insert(re.end()-pos,-1); //let -1 to denote the dot
+		re.insert(re.end()-pos,-1); //let -1 to denote the dot
 #ifdef debug
 	cout<<endl<<"result after insert dot:";
 	for(vector<int>::iterator it=re.begin();it!=re.end();it++)
@@ -179,6 +179,20 @@ string mul(string s1,string s2)
 #endif    
 	ostringstream out;
     vector<int>::reverse_iterator it=re.rbegin(),end=re.rend()-1;
+
+//---------------------------------------------------------------
+//  This section do reduce the length when compute, it do nothing with the result .
+//	But without this section it may only compute lower order,for example 0.1^1000 but not 0.1^10000
+	if(pos!=0)
+	{
+		while(*it==0)
+			it++;
+		it--;
+	}
+	while(*end==0)
+		end--;
+//---------------------------------------------------------------	
+	
 #ifdef debug
 	cout<<endl<<"result after remove dot&zeros:";
 	for(vector<int>::iterator it=re.begin();it!=re.end();it++)
