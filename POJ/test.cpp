@@ -14,8 +14,8 @@ int main(int arg, char** argv)
 	ouu<<"1"<<"2"<<3<<45;
 	std::cout<<ouu.str();
 	
-	std::string ss="23455.235";
-	std::cout<<" "<<ss<<" "<<ss.find_last_of('.',-1)<<ss.size();
+	std::string ss="0.1";
+	std::cout<<" "<<ss<<" "<<ss.find('.')<<ss.size();
 	
 	ss.erase(ss.find('.'),1);
 	std::cout<<std::endl<<ss<<" "<<ss.size();

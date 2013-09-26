@@ -75,7 +75,7 @@ int main()
     while(cin>>s>>n)
     {
         string result=pow(s,n);
-        cout<<result<<endl;
+        cout<<trimtoDisplay(result)<<endl;
 
     }
     return 0;
@@ -106,14 +106,20 @@ string mul(string s1,string s2)
     int pos2=s2.find('.');
 
     if(pos1!=std::string::npos)
+	{
         s1.erase(pos1,1);
+		
+	}
     else pos1=0;
 
     if(pos2!=std::string::npos)
-        s2.erase(pos2,1);
+	{	
+		
+        s2.erase(pos2,1);	
+	}
     else pos2=0;
 
-    int pos=pos1+pos2;  //remember the result dot position
+    int pos=pos1+pos2;  //remember the result dot position 
 
     vector<int> pre(s1.length());
     vector<int> back(s2.length());
@@ -171,43 +177,21 @@ string mul(string s1,string s2)
 	
 	if(pos!=0)
 		re.insert(re.end()-pos,-1); //let -1 to denote the dot
-#ifdef debug
-	cout<<endl<<"result after insert dot:";
-	for(vector<int>::iterator it=re.begin();it!=re.end();it++)
-		cout<<*it;
-		cout<<endl;
-#endif    
+/*
+
+pos2=s2.size()-pos2; 
+pos1=s1.size()-pos1; 
+pos=s2.size()-pos2+s1.size()-pos1
+
+*/
+ 
 	ostringstream out;
     vector<int>::reverse_iterator it=re.rbegin(),end=re.rend()-1;
-
-//---------------------------------------------------------------
-//  This section do reduce the length when compute, it do nothing with the result .
-//	But without this section it may only compute lower order,for example 0.1^1000 but not 0.1^10000
-	if(pos!=0)
-	{
-		while(*it==0)
-			it++;
-		it--;
-	}
-	while(*end==0)
-		end--;
-//---------------------------------------------------------------	
-	
-#ifdef debug
-	cout<<endl<<"result after remove dot&zeros:";
-	for(vector<int>::iterator it=re.begin();it!=re.end();it++)
-		cout<<*it;
-		cout<<endl;
-#endif  
-	
     while(it!=end+1)
     {
 		if(*it!=-1)
 			out<<*it;
 		else out<<'.';
-#ifdef debug
-		cout<<*it;
-#endif 
         it++;
     }
     return out.str();
