@@ -52,7 +52,7 @@ Taiwan 2004
 
 */
 
-#define debug
+#define debugoff
 #include <iostream>
 #include <vector>
 #include <map>
@@ -100,7 +100,7 @@ int arrange(int k,std::vector<int> &sequence)
 		{
 			if(drives_ons.find(*it)==drives_ons.end()) //not in the drives on set
 			{
-				std::vector<std::vector<int>::iterator> itset;
+				std::vector<std::vector<int>::iterator> itset;// save the iterator of dvds which are in drives on set in sequence,so that later i can find 
 				int temp=-110;
 				for(std::set<int>::iterator its=drives_ons.begin();its!=drives_ons.end();its++)
 				{
